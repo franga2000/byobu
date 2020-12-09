@@ -18,6 +18,9 @@ export default class PrivateComposing {
 
                 recipients.add('users:' + app.session.user.id(), app.session.user);
 
+                // HACK: all discussion go to admins
+                recipients.add('groups:1', app.store.getById("groups", 1));
+
                 if (this.recipient && app.session.user.id() !== this.recipient.id()) {
                     recipients.add('users:' + this.recipient.id(), this.recipient);
                 }
